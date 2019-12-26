@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".ui.main.MainFragment">
+
+    <LinearLayout
+        android:id="@+id/statsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            style="@style/MyStat"
+            android:text="Name" />
+
+        <TextView
+            style="@style/MyStat"
+            android:text="1s" />
+
+        <TextView
+            style="@style/MyStat"
+            android:text="2s" />
+
+        <TextView
+            style="@style/MyStat"
+            android:text="3s" />
+
+        <TextView
+            style="@style/MyStat"
+            android:text="4s" />
+
+        <TextView
+            style="@style/MyStat"
+            android:text="6s" />
+
+        <TextView
+            style="@style/MyStat"
+            android:text="8s" />
+
+        <TextView
+            style="@style/MyStat"
+            android:text="Stations(1-3)" />
+
+        <TextView
+            style="@style/MyStat"
+            android:text="Destinations" />
+
+        <TextView
+            style="@style/MyStat"
+            android:text="Max Road" />
+
+        <TextView
+            style="@style/MyStat"
+            android:text="Trains Left" />
+
+        <TextView
+            style="@style/MyStat"
+            android:text="Final Score" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mainFragmentRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/statsLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
