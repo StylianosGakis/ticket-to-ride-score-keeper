@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.list_item_player.view.*
 import kotlinx.android.synthetic.main.list_item_single.view.*
+import kotlinx.serialization.json.JSON
 import se.hkr.tickettoride.R
 import se.hkr.tickettoride.model.Player
 import se.hkr.tickettoride.util.Constants
-import se.hkr.tickettoride.util.MyGson
 
 class PlayerListAdapter(
     private val interaction: Interaction
@@ -80,8 +80,8 @@ class PlayerListAdapter(
             itemView.stationsLayout.value.text = player.stations.toString()
             itemView.destinations.setText(player.destinations.toString())
             itemView.maxRoad.isChecked = player.maxRoad
-            itemView.trainsLeft.text = player.trainsLeft.toString()
-            itemView.finalScore.text = player.finalScore.toString()
+            itemView.trainsLeft.text = player.trainsLeft().toString()
+            itemView.finalScore.text = player.finalScore().toString()
             setupListeners(player)
         }
 
@@ -159,7 +159,7 @@ class PlayerListAdapter(
         private fun updatePlayer(player: Player) {
             interaction.onPlayerStateChanged(
                 "${Constants.BASE_TOPIC}/${player.id}",
-                MyGson.gson.toJson(player, Player::class.java)
+                JSON.stringify(Player.serializer(), player)
             )
         }
     }

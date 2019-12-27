@@ -2,24 +2,19 @@ package se.hkr.tickettoride.ui.main
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
-import kotlinx.android.synthetic.main.main_fragment.mainFragmentRecyclerView
+import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.serialization.json.JSON
 import se.hkr.tickettoride.R
 import se.hkr.tickettoride.model.Player
 import se.hkr.tickettoride.mqtt.MqttConnection
 import se.hkr.tickettoride.util.Constants
-import se.hkr.tickettoride.util.MyGson
 import se.hkr.tickettoride.util.TopSpacingItemDecoration
 
 class MainFragment : Fragment(), PlayerListAdapter.Interaction {
@@ -95,7 +90,7 @@ class MainFragment : Fragment(), PlayerListAdapter.Interaction {
         for (i in 1..numberOfPlayers) {
             MqttConnection.publish(
                 "${Constants.BASE_TOPIC}/$i",
-                MyGson.gson.toJson(Player(id = i, stations = 3))
+                JSON.stringify(Player.serializer(), Player(id = i, stations = 3))
             )
         }
     }

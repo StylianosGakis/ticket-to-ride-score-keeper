@@ -1,8 +1,7 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlinx-serialization'
 
 android {
     compileSdkVersion 29
@@ -38,6 +37,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    // Kotlin Serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.9.1"
+
     // Mqtt
     implementation "org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.1"
     implementation "com.hivemq:hivemq-extension-archetype:4.2.0"
@@ -51,9 +53,6 @@ dependencies {
     def coroutines_version = "1.2.1"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-
-    // Gson
-    implementation "com.google.code.gson:gson:2.8.5"
 
     // Material dialogs
     def material_dialogs_version = "3.1.0"
