@@ -1,5 +1,8 @@
 package se.hkr.tickettoride.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Player(
     val id: Int = 0,
     var name: String = "",
@@ -13,16 +16,17 @@ data class Player(
     var stations: Int = 0,
     var maxRoad: Boolean = false
 ) {
-    val trainsLeft = {
-        45 - (one +
+    fun trainsLeft(): Int {
+        return 45 - (one +
                 (two * 2) +
                 (three * 3) +
                 (four * 4) +
                 (six * 6) +
                 (eight * 8))
     }
-    val finalScore = {
-        one + (two * 2) +
+
+    fun finalScore(): Int {
+        return one + (two * 2) +
                 (three * 4) +
                 (four * 7) +
                 (six * 15) +

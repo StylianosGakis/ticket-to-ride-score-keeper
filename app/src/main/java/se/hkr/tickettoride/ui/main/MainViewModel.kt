@@ -7,10 +7,10 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.serialization.json.JSON
 import se.hkr.tickettoride.model.Player
 import se.hkr.tickettoride.mqtt.MqttConnection
 import se.hkr.tickettoride.util.Constants
-import se.hkr.tickettoride.util.MyGson
 
 class MainViewModel : ViewModel() {
     init {
@@ -48,7 +48,7 @@ class MainViewModel : ViewModel() {
         MqttConnection.mqttClient.subscribe("${Constants.BASE_TOPIC}/#") { topic, message ->
             Log.d(TAG, "MainViewModel: subscription received topic: $topic, message: $message")
             try {
-                val newPlayer = MyGson.gson.fromJson(message.toString(), Player::class.java)
+                val newPlayer = JSON.parse(Player.serializer(), message.toString())
                 CoroutineScope(Dispatchers.Main).launch {
                     updatePlayer(newPlayer)
                 }
